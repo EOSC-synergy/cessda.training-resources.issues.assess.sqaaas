@@ -1,0 +1,46 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: fix/updatego
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/cessda/cessda.training-resources.issues:
+      branch: main
+      repo: https://github.com/cessda/cessda.training-resources.issues
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/cessda/cessda.training-resources.issues git:
+        commands:
+        - /usr/bin/env sh .sqa/script.mango_loyal_uakari.sh
+        container: qc.acc_cornflower_reflective_impala
+  QC.Doc:
+    repos:
+      github.com/cessda/cessda.training-resources.issues find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.linen_courageous_salamander.sh
+        container: qc.doc_marigold_unique_narwhal
+      github.com/cessda/cessda.training-resources.issues git:
+        commands:
+        - /usr/bin/env sh .sqa/script.pine_aware_beaver.sh
+        container: qc.doc_glacier_reckless_macaw
+      github.com/cessda/cessda.training-resources.issues markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.viridian_jubilant_mandrill.sh
+        container: qc.doc_salmon_lively_warthog
+  QC.Lic:
+    repos:
+      github.com/cessda/cessda.training-resources.issues licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.eggplant_open_skunk.sh
+        container: qc.lic_ecru_warm_anaconda
+  QC.Ver:
+    repos:
+      github.com/cessda/cessda.training-resources.issues get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.mauve_tolerant_meerkat.sh
+        container: qc.ver_nutmeg_tolerant_mongoose
+timeout: 5400
